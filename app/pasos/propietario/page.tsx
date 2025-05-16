@@ -57,23 +57,30 @@ export default function PasoPropietario() {
   };
 
   return (
-    <section className="w-full min-h-[60vh] flex flex-col items-center justify-center px-4 py-8">
+    <section className="w-full min-h-[60vh] flex flex-col items-center justify-center px-4 py-5">
       <Stepper steps={pasosPropietario} currentStep={currentStep} />
       <div className="mt-8 w-full max-w-2xl">
     
         {/* Renderizar el formulario según el paso actual */}
         {renderFormByStep()}
         
-        <div className="mt-6 flex justify-between">
+        <div className="mt-6 flex justify-end gap-3" >
+        <button
+            className=" text-red-600 px-3 py-2 rounded-lg disabled:opacity-50"
+            onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+            disabled={currentStep === 0}
+          >
+            Anular tramite
+          </button>
           <button
-            className="bg-gray-200 text-gray-600 px-4 py-2 rounded disabled:opacity-50"
+            className="bg-gray-200 text-gray-600 px-3 py-2 rounded-lg disabled:opacity-50"
             onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
             disabled={currentStep === 0}
           >
             Anterior
           </button>
           <button
-            className="bg-[#003876] text-white px-4 py-2 rounded disabled:opacity-50"
+            className="bg-[#003876] text-white px-3 py-2 rounded-lg disabled:opacity-50"
             onClick={() => setCurrentStep((prev) => Math.min(prev + 1, pasosPropietario.length - 1))}
             disabled={currentStep === pasosPropietario.length - 1}
           >
