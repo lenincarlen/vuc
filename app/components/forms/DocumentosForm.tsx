@@ -9,9 +9,31 @@ interface DocumentosFormProps {
 
 export default function DocumentosForm({ onSubmit }: DocumentosFormProps) {
   const documentosRequeridos = [
-    "Plano",
-    "Plano Geotécnico",
-    "Registro Sanitario"
+   "Título(s) de propiedad",
+"Plano de Mensura Catastral",
+"Certificado de Uso de suelo y No Objeción al Proyecto",
+"Tarjeta del Codia Arquitecto",
+"Fotos estado actual del terreno",
+"Planos arquitéctonicos sellados por ayuntamiento y MITUR (si aplica)",
+"Planos Estructurales",
+"Planos Hidrosanitarios",
+"Planos de Instalaciones Eléctricas",
+"Informe de Estudio Geotécnico",
+"Memoria de cálculos estructurales",
+"Modelo computacional",
+"Memoria de cálculos hidrosanitarios",
+"Informe Levantamiento estructural",
+"Planos diseño vial",
+"Informe diseño de pavimento",
+"Autorización Ambiental",
+"No Objeción de Turismo",
+"Certificaciones y Resolución de Industria y Comercio",
+"No Objeción de la Defensa Civil",
+"No Objeción del Cuerpo de Bomberos",
+"Certificaciones y Avalúo del Ministerio de Hacienda",
+"Aprobación del Ministerio de Salud Pública",
+"Otros"
+
   ];
   const [documentos, setDocumentos] = useState<File[]>([]);
   const [documentosNombres, setDocumentosNombres] = useState<string[]>([]);

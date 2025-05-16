@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const pasosAutorProyecto = [
   "Propietario ",
-  "Propietario Autor del Proyecto",
+  "Autor del Proyecto",
   "Memoria",
   "Datos",
   "Inmuebles",
