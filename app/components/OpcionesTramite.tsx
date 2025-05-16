@@ -85,7 +85,7 @@ export default function OpcionesTramite() {
       </div>
       <div className="flex justify-center mt-8">
         {/* ACEPTAR TERMINOS */}
-        <div className="col-12 my-10 w-full flex flex-nowrap justify-center items-center gap-3 text-xs">
+        <div className="col-12 my-5 w-full flex flex-nowrap justify-center items-center gap-3 text-xs">
           <input
             id="declarationCheck"
             type="checkbox"
@@ -101,7 +101,7 @@ export default function OpcionesTramite() {
           </label>
         </div>
         </div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center ">
         <button
           className={`bg-[#003876] text-white font-semibold py-2 px-4 rounded-lg transition duration-200 ${puedeContinuar ? 'hover:bg-[#002b5c]' : 'opacity-50 cursor-not-allowed'}`}
           disabled={!puedeContinuar}

@@ -77,7 +77,7 @@ export default function DocumentosForm({ onSubmit }: DocumentosFormProps) {
         <Progress
           className="w-full"
           color="secondary" 
-          label={`Progreso: ${documentosNombres.length}/${documentosRequeridos.length}`}
+          label={`Documentos cargados:   ${documentosNombres.length}/${documentosRequeridos.length}`}
           maxValue={documentosRequeridos.length}
           showValueLabel={false}
           size="sm"
