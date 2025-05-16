@@ -59,12 +59,12 @@ export default function PasoPropietario() {
   return (
     <section className="w-full min-h-[60vh] flex flex-col items-center justify-center px-4 py-5">
       <Stepper steps={pasosPropietario} currentStep={currentStep} />
-      <div className="mt-8 w-full max-w-2xl">
+      <div className=" w-full max-w-2xl">
     
         {/* Renderizar el formulario según el paso actual */}
         {renderFormByStep()}
         
-        <div className="mt-6 flex justify-end gap-3" >
+        <div className="mt-2 flex justify-end gap-3" >
         <button
             className=" text-red-600 px-3 py-2 rounded-lg disabled:opacity-50"
             onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}

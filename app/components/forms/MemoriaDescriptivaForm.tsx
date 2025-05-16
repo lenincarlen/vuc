@@ -1,7 +1,7 @@
 "use client"
-import { Input, Textarea } from "@heroui/input";
+import { Input, Textarea} from "@heroui/input";
 import React, { useState } from "react";
-
+import { Select } from "@heroui/select";
 interface MemoriaDescriptivaFormProps {
   onSubmit: (data: any) => void;
 }
@@ -54,7 +54,7 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
         <div className="md:col-span-2">
         
           <Input
-          label="Mombre del Proyecto"
+          label="Nombre del Proyecto"
             type="text"
             id="nombreProyecto"
             name="nombreProyecto"
@@ -72,7 +72,7 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
            <Textarea
       isClearable
       
-      defaultValue="DEscrib detalladamente su proyecto"
+      defaultValue="Describ detalladamente su proyecto"
       label="Description"
       placeholder="Description"
      
@@ -83,253 +83,231 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
         </div>
         
         <div>
-          <label htmlFor="montoTotalInversion" className="block text-sm font-medium text-gray-700 mb-1">
-            Monto Total de Inversión
-          </label>
-          <input
+        
+          <Input
             type="number"
             id="montoTotalInversion"
             name="montoTotalInversion"
-            value={memoriaData.montoTotalInversion}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+              label="Monto Total de Inversión"
+          placeholder="0.00"
+          startContent={
+            <div className="pointer-events-none flex items-center">
+              <span className="text-default-400 text-small">$</span>
+            </div>
+          }
+          type="number"
           />
+        
+     
+        </div>
+            <Input
+          endContent={
+            <div className="flex items-center">
+              <label className="sr-only" htmlFor="currency">
+                Currency
+              </label>
+              <select
+                className="outline-none border-0 bg-transparent text-default-400 text-small"
+                id="currency"
+                name="currency"
+              >
+                <option>USD</option>
+                <option>RD</option>
+               
+              </select>
+            </div>
+          }
+          label=" Inversión Nacional RD$"
+         
+          placeholder="0.00"
+          startContent={
+            <div className="pointer-events-none flex items-center">
+              <span className="text-default-400 text-small">$</span>
+            </div>
+          }
+          type="number"
+           value={memoriaData.inversionNacional}
+            onChange={handleChange}
+        />
+        
+      
+        
+        <div>
+             <Input
+          endContent={
+            <div className="flex items-center">
+              <label className="sr-only" htmlFor="currency">
+                Currency
+              </label>
+              <select
+                className="outline-none border-0 bg-transparent text-default-400 text-small"
+                id="currency"
+                name="currency"
+              >
+                <option>USD</option>
+                <option>RD</option>
+               
+              </select>
+            </div>
+          }
+          label=" Inversión Extranjera"
+         
+          placeholder="0.00"
+          startContent={
+            <div className="pointer-events-none flex items-center">
+              <span className="text-default-400 text-small">$</span>
+            </div>
+          }
+          type="number"
+           value={memoriaData.inversionExtranjera}
+            onChange={handleChange}
+        />
         </div>
         
         <div>
-          <label htmlFor="inversionNacional" className="block text-sm font-medium text-gray-700 mb-1">
-            Inversión Nacional RD$*
-          </label>
-          <input
-            type="number"
-            id="inversionNacional"
-            name="inversionNacional"
-            value={memoriaData.inversionNacional}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="inversionExtranjera" className="block text-sm font-medium text-gray-700 mb-1">
-            Inversión Extranjera RD$
-          </label>
-          <input
-            type="number"
-            id="inversionExtranjera"
-            name="inversionExtranjera"
-            value={memoriaData.inversionExtranjera}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="paisOrigenCapital" className="block text-sm font-medium text-gray-700 mb-1">
-            País de Origen del Capital de inversión*
-          </label>
-          <input
+         
+          <Input
+          label="País de Origen del Capital de inversión"
             type="text"
+            placeholder="Origen del Capital"
             id="paisOrigenCapital"
             name="paisOrigenCapital"
             value={memoriaData.paisOrigenCapital}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
         
         <div>
-          <label htmlFor="tipoConstruccion" className="block text-sm font-medium text-gray-700 mb-1">
-            Tipo de Construcción
-          </label>
-          <select
+          <Select
+            label="Tipo de Construcción"
             id="tipoConstruccion"
             name="tipoConstruccion"
             value={memoriaData.tipoConstruccion}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
-          >
-            <option value="">Seleccione una opción</option>
-            {tiposConstruccion.map(tipo => (
-              <option key={tipo} value={tipo}>{tipo}</option>
-            ))}
-          </select>
+            isRequired
+            options={tiposConstruccion.map(tipo => ({ label: tipo, value: tipo }))}
+          />
         </div>
-        
         <div>
-          <label htmlFor="subTipoConstruccion" className="block text-sm font-medium text-gray-700 mb-1">
-            Sub Tipo de Construcción
-          </label>
-          <select
+          <Select
+            label="Sub Tipo de Construcción"
             id="subTipoConstruccion"
             name="subTipoConstruccion"
             value={memoriaData.subTipoConstruccion}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
-          >
-            <option value="">Seleccione una opción</option>
-            {subTiposConstruccion.map(subtipo => (
-              <option key={subtipo} value={subtipo}>{subtipo}</option>
-            ))}
-          </select>
+            isRequired
+            options={subTiposConstruccion.map(subtipo => ({ label: subtipo, value: subtipo }))}
+          />
         </div>
-        
         <div>
-          <label htmlFor="tipoSistemaConstructivo" className="block text-sm font-medium text-gray-700 mb-1">
-            Tipo de Sistema Constructivo
-          </label>
-          <select
+          <Select
+            label="Tipo de Sistema Constructivo"
             id="tipoSistemaConstructivo"
             name="tipoSistemaConstructivo"
             value={memoriaData.tipoSistemaConstructivo}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
-          >
-            <option value="">Seleccione una opción</option>
-            {sistemaConstructivo.map(sistema => (
-              <option key={sistema} value={sistema}>{sistema}</option>
-            ))}
-          </select>
+            isRequired
+            options={sistemaConstructivo.map(sistema => ({ label: sistema, value: sistema }))}
+          />
         </div>
-        
         <div>
-          <label htmlFor="alturaMaxima" className="block text-sm font-medium text-gray-700 mb-1">
-            Altura Máxima (m)
-          </label>
-          <input
+          <Input
+            label="Altura Máxima (m)"
             type="number"
             id="alturaMaxima"
             name="alturaMaxima"
             value={memoriaData.alturaMaxima}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="areaConstruccionTotal" className="block text-sm font-medium text-gray-700 mb-1">
-            Área de Construcción Total (m²)
-          </label>
-          <input
+          <Input
+            label="Área de Construcción Total (m²)"
             type="number"
             id="areaConstruccionTotal"
             name="areaConstruccionTotal"
             value={memoriaData.areaConstruccionTotal}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="bloquesEdificacion" className="block text-sm font-medium text-gray-700 mb-1">
-            Bloques de Edificación
-          </label>
-          <input
+          <Input
+            label="Bloques de Edificación"
             type="number"
             id="bloquesEdificacion"
             name="bloquesEdificacion"
             value={memoriaData.bloquesEdificacion}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="cantidadTotalHabitaciones" className="block text-sm font-medium text-gray-700 mb-1">
-            Cantidad Total de Habitaciones
-          </label>
-          <input
+          <Input
+            label="Cantidad Total de Habitaciones"
             type="number"
             id="cantidadTotalHabitaciones"
             name="cantidadTotalHabitaciones"
             value={memoriaData.cantidadTotalHabitaciones}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="cantidadTotalPlazasParqueo" className="block text-sm font-medium text-gray-700 mb-1">
-            Cantidad Total de Plazas de Parqueo*
-          </label>
-          <input
+          <Input
+            label="Cantidad Total de Plazas de Parqueo*"
             type="number"
             id="cantidadTotalPlazasParqueo"
             name="cantidadTotalPlazasParqueo"
             value={memoriaData.cantidadTotalPlazasParqueo}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="coberturaSuelo" className="block text-sm font-medium text-gray-700 mb-1">
-            Cobertura de Suelo (m² 1er. Nivel)
-          </label>
-          <input
+          <Input
+            label="Cobertura de Suelo (m² 1er. Nivel)"
             type="number"
             id="coberturaSuelo"
             name="coberturaSuelo"
             value={memoriaData.coberturaSuelo}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="nivelesSoterrados" className="block text-sm font-medium text-gray-700 mb-1">
-            Niveles Soterrados
-          </label>
-          <input
+          <Input
+            label="Niveles Soterrados"
             type="number"
             id="nivelesSoterrados"
             name="nivelesSoterrados"
             value={memoriaData.nivelesSoterrados}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="nivelesAcera" className="block text-sm font-medium text-gray-700 mb-1">
-            Niveles a partir de Acera
-          </label>
-          <input
+          <Input
+            label="Niveles a partir de Acera"
             type="number"
             id="nivelesAcera"
             name="nivelesAcera"
             value={memoriaData.nivelesAcera}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="cantidadApartamentos" className="block text-sm font-medium text-gray-700 mb-1">
-            Cant. de Apartamentos
-          </label>
-          <input
+          <Input
+            label="Cant. de Apartamentos"
             type="number"
             id="cantidadApartamentos"
             name="cantidadApartamentos"
             value={memoriaData.cantidadApartamentos}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
       </div>

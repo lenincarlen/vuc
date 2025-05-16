@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
-
+import { Input } from "@heroui/input";
+import { Select } from "@heroui/select";
 interface DatosTramiteFormProps {
   onSubmit: (data: any) => void;
 }
@@ -57,176 +58,125 @@ export default function DatosTramiteForm({ onSubmit }: DatosTramiteFormProps) {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="extensionTotalTerreno" className="block text-sm font-medium text-gray-700 mb-1">
-            Extensión Total del terreno (m²)
-          </label>
-          <input
+          <Input
+            label="Extensión Total del terreno (m²)"
             type="number"
             id="extensionTotalTerreno"
             name="extensionTotalTerreno"
             value={tramiteData.extensionTotalTerreno}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="areaDesarrolloProyecto" className="block text-sm font-medium text-gray-700 mb-1">
-            Área para el desarrollo del proyecto (m²)*
-          </label>
-          <input
+          <Input
+            label="Área para el desarrollo del proyecto (m²)*"
             type="number"
             id="areaDesarrolloProyecto"
             name="areaDesarrolloProyecto"
             value={tramiteData.areaDesarrolloProyecto}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="region" className="block text-sm font-medium text-gray-700 mb-1">
-            Región
-          </label>
-          <select
+          <Select
+            label="Región"
             id="region"
             name="region"
             value={tramiteData.region}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
-          >
-            <option value="">Seleccione una región</option>
-            {regiones.map(region => (
-              <option key={region} value={region}>{region}</option>
-            ))}
-          </select>
+            isRequired
+            options={[{ label: "Seleccione una región", value: "" }, ...regiones.map(region => ({ label: region, value: region }))]}
+          />
         </div>
-        
         <div>
-          <label htmlFor="provincia" className="block text-sm font-medium text-gray-700 mb-1">
-            Provincia
-          </label>
-          <select
+          <Select
+            label="Provincia"
             id="provincia"
             name="provincia"
             value={tramiteData.provincia}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
             disabled={!tramiteData.region}
-          >
-            <option value="">Seleccione una provincia</option>
-            {provinciasFiltradas.map(provincia => (
-              <option key={provincia} value={provincia}>{provincia}</option>
-            ))}
-          </select>
+            options={[{ label: "Seleccione una provincia", value: "" }, ...provinciasFiltradas.map(provincia => ({ label: provincia, value: provincia }))]}
+          />
         </div>
-        
         <div>
-          <label htmlFor="municipio" className="block text-sm font-medium text-gray-700 mb-1">
-            Municipio
-          </label>
-          <input
+          <Input
+            label="Municipio"
             type="text"
             id="municipio"
             name="municipio"
             value={tramiteData.municipio}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="sector" className="block text-sm font-medium text-gray-700 mb-1">
-            Sector
-          </label>
-          <input
+          <Input
+            label="Sector"
             type="text"
             id="sector"
             name="sector"
             value={tramiteData.sector}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="calle" className="block text-sm font-medium text-gray-700 mb-1">
-            Calle
-          </label>
-          <input
+          <Input
+            label="Calle"
             type="text"
             id="calle"
             name="calle"
             value={tramiteData.calle}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="numero" className="block text-sm font-medium text-gray-700 mb-1">
-            Número
-          </label>
-          <input
+          <Input
+            label="Número"
             type="text"
             id="numero"
             name="numero"
             value={tramiteData.numero}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="latitud" className="block text-sm font-medium text-gray-700 mb-1">
-            Latitud
-          </label>
-          <input
+          <Input
+            label="Latitud"
             type="text"
             id="latitud"
             name="latitud"
             value={tramiteData.latitud}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div>
-          <label htmlFor="longitud" className="block text-sm font-medium text-gray-700 mb-1">
-            Longitud
-          </label>
-          <input
+          <Input
+            label="Longitud"
             type="text"
             id="longitud"
             name="longitud"
             value={tramiteData.longitud}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+            isRequired
           />
         </div>
-        
         <div className="md:col-span-2">
-          <label htmlFor="enlaceLocacion" className="block text-sm font-medium text-gray-700 mb-1">
-            Enlace de locación
-          </label>
-          <input
+          <Input
+            label="Enlace de locación"
             type="url"
             id="enlaceLocacion"
             name="enlaceLocacion"
             value={tramiteData.enlaceLocacion}
             onChange={handleChange}
             placeholder="https://maps.google.com/..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
           />
         </div>
       </div>

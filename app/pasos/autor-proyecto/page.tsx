@@ -8,6 +8,7 @@ import DatosTramiteForm from "../../components/forms/DatosTramiteForm";
 import InmuebleForm from "../../components/forms/InmuebleForm";
 import FacturacionForm from "../../components/forms/FacturacionForm";
 import DocumentosForm from "../../components/forms/DocumentosForm";
+import { AnimatePresence, motion } from "framer-motion";
 
 const pasosAutorProyecto = [
   "Propietario ",
@@ -37,19 +38,19 @@ export default function PasoAutorProyecto() {
 
   const renderFormByStep = () => {
     switch (currentStep) {
-      case 0: // Autor del Proyecto
+      case 0:
         return <AutorProyectoForm onSubmit={handleFormSubmit} />;
-      case 1: // Propietario
+      case 1:
         return <PropietarioForm onSubmit={handleFormSubmit} />;
-      case 2: // Memoria
+      case 2:
         return <MemoriaDescriptivaForm onSubmit={handleFormSubmit} />;
-      case 3: // Datos
+      case 3:
         return <DatosTramiteForm onSubmit={handleFormSubmit} />;
-      case 4: // Inmuebles
+      case 4:
         return <InmuebleForm onSubmit={handleFormSubmit} />;
-      case 5: // Facturación
+      case 5:
         return <FacturacionForm onSubmit={handleFormSubmit} />;
-      case 6: // Documentos
+      case 6:
         return <DocumentosForm onSubmit={handleFormSubmit} />;
       default:
         return <div>Paso no encontrado</div>;
@@ -60,11 +61,25 @@ export default function PasoAutorProyecto() {
     <section className="w-full min-h-[60vh] flex flex-col items-center justify-center px-4 py-5">
       <Stepper steps={pasosAutorProyecto} currentStep={currentStep} />
       <div className="mt-8 w-full max-w-2xl">
-        <h2 className="text-sm text- start font-bold mb-4 text-[#003876]">Datos del Autor del Proyecto</h2>
-   
-        {/* Renderizar el formulario según el paso actual */}
-        {renderFormByStep()}
-        
+        <div className="flex justify-end">
+        {/* boton atras */}
+        <button className="bg-[#003876] rounded-full h-8 w-8 text-white justify-center items-center  flex">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6L5 12M5 12L11 18M5 12H19" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        </button>
+        </div>
+
+       
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStep}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.4 }}
+          >
+            {renderFormByStep()}
+          </motion.div>
+        </AnimatePresence>
         <div className="mt-6 flex justify-start">
           <button
             className="bg-gray-200 text-gray-600 px-4 py-2 rounded disabled:opacity-50"

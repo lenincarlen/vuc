@@ -1,6 +1,31 @@
 "use client"
 import React, { useState } from "react";
 
+import {  RadioGroup} from "@heroui/radio";
+
+import { Input } from "@heroui/input";
+import {  Button  } from "@heroui/button";
+import { cn } from "tailwind-variants";
+
+ 
+import { Radio } from "@heroui/radio";
+const CustomRadio = (props: any) => {
+  const { children, ...otherProps } = props;
+  return (
+    <Radio
+      {...otherProps}
+      classNames={{
+        base: cn(
+          "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
+          "flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "data-[selected=true]:border-primary",
+        ),
+      }}
+    >
+      {children}
+    </Radio>
+  );
+};
 interface FacturacionFormProps {
   onSubmit: (data: any) => void;
 }
@@ -42,185 +67,126 @@ export default function FacturacionForm({ onSubmit }: FacturacionFormProps) {
     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm">
       <h3 className="text-lg font-semibold mb-4 text-[#003876]">Datos Factura con Comprobante</h3>
       
-      <div className="space-y-4">
-        <div>
+      <div className="space-y-4 ">
+        <div className="">
           <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de Cliente</label>
-          <div className="flex flex-wrap gap-4">
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoCliente"
-                checked={facturacionData.tipoCliente === "fisica"}
-                onChange={() => handleRadioChange("tipoCliente", "fisica")}
-              />
-              <span className="ml-2">Persona Física</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoCliente"
-                checked={facturacionData.tipoCliente === "compania"}
-                onChange={() => handleRadioChange("tipoCliente", "compania")}
-              />
-              <span className="ml-2">Compañía</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoCliente"
-                checked={facturacionData.tipoCliente === "gobierno"}
-                onChange={() => handleRadioChange("tipoCliente", "gobierno")}
-              />
-              <span className="ml-2">Gobierno</span>
-            </label>
-          </div>
+          <RadioGroup
+            value={facturacionData.tipoCliente}
+            onValueChange={value => handleRadioChange("tipoCliente", value)}
+            className="flex flex-1 gap-4"
+            name="tipoCliente"
+            label="Tipo de Cliente"
+          >
+            <CustomRadio value="fisica">Persona Física</CustomRadio>
+            <CustomRadio value="compania">Compañía</CustomRadio>
+            <CustomRadio value="gobierno">Gobierno</CustomRadio>
+          </RadioGroup>
         </div>
-        
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de Comprobante</label>
-          <div className="flex flex-wrap gap-4">
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoComprobante"
-                checked={facturacionData.tipoComprobante === "gubernamental"}
-                onChange={() => handleRadioChange("tipoComprobante", "gubernamental")}
-              />
-              <span className="ml-2">Gubernamental</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoComprobante"
-                checked={facturacionData.tipoComprobante === "zonafranca"}
-                onChange={() => handleRadioChange("tipoComprobante", "zonafranca")}
-              />
-              <span className="ml-2">Zona Franca</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                className="form-radio text-[#003876]"
-                name="tipoComprobante"
-                checked={facturacionData.tipoComprobante === "consumidor"}
-                onChange={() => handleRadioChange("tipoComprobante", "consumidor")}
-              />
-              <span className="ml-2">Consumidor Final</span>
-            </label>
-          </div>
+          <RadioGroup
+            value={facturacionData.tipoComprobante}
+            onValueChange={value => handleRadioChange("tipoComprobante", value)}
+            className="flex flex-wrap gap-4"
+            name="tipoComprobante"
+            label="Tipo de Comprobante"
+          >
+            <CustomRadio value="gubernamental">Gubernamental</CustomRadio>
+            <CustomRadio value="zonafranca">Zona Franca</CustomRadio>
+            <CustomRadio value="consumidor">Consumidor Final</CustomRadio>
+          </RadioGroup>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <div>
-            <label htmlFor="nombreDestinatario" className="block text-sm font-medium text-gray-700 mb-1">
-              Nombre del destinatario de la factura
-            </label>
-            <input
+          
+            <Input
               type="text"
+              label="A nombre de:"
+              placeholder="Nombre del destinatario de la factura"
               id="nombreDestinatario"
               name="nombreDestinatario"
               value={facturacionData.nombreDestinatario}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
               required
             />
           </div>
-          
           {(facturacionData.tipoCliente === "compania" || facturacionData.tipoCliente === "gobierno") && (
             <div>
-              <label htmlFor="rnc" className="block text-sm font-medium text-gray-700 mb-1">
-                RNC
-              </label>
-              <input
+           
+              <Input
                 type="text"
+                label="RNC"
+                placeholder="00000000"
                 id="rnc"
                 name="rnc"
                 value={facturacionData.rnc}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
                 required={facturacionData.tipoCliente === "compania" || facturacionData.tipoCliente === "gobierno"}
               />
             </div>
           )}
-          
           {facturacionData.tipoCliente === "fisica" && (
             <div>
-              <label htmlFor="cedulaPasaporte" className="block text-sm font-medium text-gray-700 mb-1">
-                Cédula/Pasaporte
-              </label>
-              <input
+              
+              <Input
                 type="text"
                 id="cedulaPasaporte"
+                label="Cédula/Pasaporte"
                 name="cedulaPasaporte"
                 value={facturacionData.cedulaPasaporte}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
                 required={facturacionData.tipoCliente === "fisica"}
               />
             </div>
           )}
-          
           <div>
-            <label htmlFor="ciudad" className="block text-sm font-medium text-gray-700 mb-1">
-              Ciudad
-            </label>
-            <input
+          
+            <Input
               type="text"
               id="ciudad"
+              label="Ciudad"
+              placeholder="Ciudad"
               name="ciudad"
               value={facturacionData.ciudad}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
               required
             />
           </div>
-          
           <div>
-            <label htmlFor="sector" className="block text-sm font-medium text-gray-700 mb-1">
-              Sector
-            </label>
-            <input
+           
+            <Input
               type="text"
+              label="Sector"
               id="sector"
               name="sector"
               value={facturacionData.sector}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
               required
             />
           </div>
-          
           <div>
-            <label htmlFor="calle" className="block text-sm font-medium text-gray-700 mb-1">
-              Calle
-            </label>
-            <input
+          
+            <Input
               type="text"
+              label="Calle"
+              placeholder="02 PO Box. Av"
               id="calle"
               name="calle"
               value={facturacionData.calle}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
               required
             />
           </div>
-          
           <div>
-            <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-1">
-              Teléfono
-            </label>
-            <input
+          
+            <Input
               type="tel"
+              label=" Teléfono"
+              placeholder="8090000000"
               id="telefono"
               name="telefono"
               value={facturacionData.telefono}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
               required
             />
           </div>
@@ -228,12 +194,9 @@ export default function FacturacionForm({ onSubmit }: FacturacionFormProps) {
       </div>
 
       <div className="mt-6 flex justify-end">
-        <button
-          type="submit"
-          className="bg-[#003876] text-white px-4 py-2 rounded hover:bg-[#002b5c] transition-colors"
-        >
+        <Button type="submit" color="primary">
           Guardar y Continuar
-        </button>
+        </Button>
       </div>
     </form>
   );

@@ -9,28 +9,28 @@ const opciones = [
     icono: (
       <svg width="28" height="28" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#0A2E6E"/><circle cx="24" cy="20" r="6" fill="#fff"/><path d="M36 36c0-6.627-5.373-12-12-12s-12 5.373-12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
     ),
-    descripcion: "Presione iniciar para crear el trámite para Profesional responsable diseño",
+    descripcion: "Seleccione si quien realiza la solicitud es el propietario del proyecto",
   },
   {
     titulo: "Profesional responsable diseño",
     icono: (
       <svg width="28" height="28" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#0A2E6E"/><circle cx="24" cy="20" r="6" fill="#fff"/><path d="M36 36c0-6.627-5.373-12-12-12s-12 5.373-12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
     ),
-    descripcion: "Presione iniciar para crear el trámite para Profesional responsable diseño",
+    descripcion: "Seleccione si quien realiza la solicitud es el  autor del diseño del proyecto",
   },
   {
     titulo: "Propietario & Profesional ",
     icono: (
       <svg width="28" height="28" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#0A2E6E"/><circle cx="17" cy="21" r="4" fill="#fff"/><circle cx="31" cy="21" r="4" fill="#fff"/><path d="M24 36c0-4.418-3.582-8-8-8s-8 3.582-8 8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/><path d="M40 36c0-4.418-3.582-8-8-8s-8 3.582-8 8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
     ),
-    descripcion: "Presione iniciar para crear el trámite para Ambos",
+    descripcion: "Seleccione si quien realiza la solicitud es el propietario y el responsable del diseño del proyecto",
   },
   {
-    titulo: "Tramitador",
+    titulo: "Tramitador / Representante",
     icono: (
       <svg width="28" height="28" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#0A2E6E"/><circle cx="24" cy="20" r="3" fill="#fff"/><circle cx="16" cy="24" r="2" fill="#fff"/><circle cx="32" cy="24" r="2" fill="#fff"/><path d="M24 36c0-4.418-3.582-8-8-8s-8 3.582-8 8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/><path d="M40 36c0-4.418-3.582-8-8-8s-8 3.582-8 8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
     ),
-    descripcion: "Presione iniciar para crear el trámite para Ninguno",
+    descripcion: "Seleccione si quien realiza la solicitud es el representante designado por el proietario para gestionar el permiso",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function OpcionesTramite() {
     <section className="relative w-full h-full lg:min-h-[75vh] flex flex-col px-5 md:px-14 -mt-10">
       <Stepper steps={["Seleccionar opción", "Aceptar términos", "Confirmar trámite"]} currentStep={seleccionada === null ? 0 : aceptaTerminos ? 2 : 1} />
       <h2 className="text-sm font-semibold mb-8 text-start mt-5 border-b-[#003876] px-1 py-1.5 text-[#003876]     ">
-        Seleccione para quién se crea el trámite
+        ¿Quien está haciendo la solicitud?
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full justify-center items-center  ">
@@ -71,10 +71,10 @@ export default function OpcionesTramite() {
               <p className="text-sm text-zinc-500 mt-1 leading-snug">
                 {opcion.descripcion ? (
                   <>
-                    <span className="font-semibold text-zinc-700">
-                      {opcion.descripcion.split(' ').slice(0, 2).join(' ')}
+                    <span className="font-semibold text-red-800">
+                      {opcion.descripcion.split(' ').slice(0, 1).join(' ')}
                     </span>{' '}
-                    {opcion.descripcion.split(' ').slice(2).join(' ')}
+                    {opcion.descripcion.split(' ').slice(1).join(' ')}
                   </>
                 ) : null}
               </p>

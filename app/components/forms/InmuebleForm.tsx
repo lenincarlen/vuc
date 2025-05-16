@@ -1,4 +1,5 @@
 "use client"
+import { Input } from "@heroui/input";
 import React, { useState } from "react";
 
 interface InmuebleFormProps {
@@ -46,122 +47,113 @@ export default function InmuebleForm({ onSubmit }: InmuebleFormProps) {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="designacionCatastral" className="block text-sm font-medium text-gray-700 mb-1">
-            Designación Catastral
-          </label>
-          <input
+          
+          <Input
             type="text"
+            label="Designación Catastral"
+           placeholder="Designación Catastral"
             id="designacionCatastral"
             name="designacionCatastral"
             value={inmuebleData.designacionCatastral}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+              isRequired
           />
         </div>
         
         <div>
-          <label htmlFor="matricula" className="block text-sm font-medium text-gray-700 mb-1">
-            Matrícula
-          </label>
-          <input
+         
+          <Input
             type="text"
             id="matricula"
             name="matricula"
+            label="Matricula"
+            placeholder="matricula"
             value={inmuebleData.matricula}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+             isRequired
           />
         </div>
         
         <div>
-          <label htmlFor="superficie" className="block text-sm font-medium text-gray-700 mb-1">
-            Superficie (m²)
-          </label>
-          <input
+       
+          <Input
             type="number"
+            label="Superficie (m²)"
+            placeholder="00m²"
             id="superficie"
             name="superficie"
             value={inmuebleData.superficie}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+           isRequired
           />
         </div>
         
         <div>
-          <label htmlFor="numeroParcela" className="block text-sm font-medium text-gray-700 mb-1">
-            Número de Parcela o Solar
-          </label>
-          <input
+      
+          <Input
             type="text"
             id="numeroParcela"
+            placeholder="00000"
+            label="Número de Parcela o Solar"
             name="numeroParcela"
             value={inmuebleData.numeroParcela}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+             isRequired
           />
         </div>
         
         <div>
-          <label htmlFor="distritoCatastral" className="block text-sm font-medium text-gray-700 mb-1">
-            Distrito Catastral
-          </label>
-          <input
+       
+          <Input
             type="text"
+            placeholder=""
+            label=" Distrito Catastral"
             id="distritoCatastral"
             name="distritoCatastral"
             value={inmuebleData.distritoCatastral}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+          
           />
         </div>
         
         <div>
-          <label htmlFor="fechaInscripcion" className="block text-sm font-medium text-gray-700 mb-1">
-            Fecha de Inscripción
-          </label>
-          <input
+        
+          <Input
             type="date"
             id="fechaInscripcion"
             name="fechaInscripcion"
+            label="Fecha de Inscripción"
             value={inmuebleData.fechaInscripcion}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+           
           />
         </div>
         
         <div>
-          <label htmlFor="manzana" className="block text-sm font-medium text-gray-700 mb-1">
-            Manzana
-          </label>
-          <input
+       
+          <Input
             type="text"
             id="manzana"
             name="manzana"
+            label="Manzana"
+            placeholder="#"
             value={inmuebleData.manzana}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+           
           />
         </div>
         
         <div>
-          <label htmlFor="nombrePropietario" className="block text-sm font-medium text-gray-700 mb-1">
-            Nombre Propietario
-          </label>
-          <input
+       
+          <Input
             type="text"
+            placeholder="Juan Perez"
             id="nombrePropietario"
+            label="Nombre Propietario"
             name="nombrePropietario"
             value={inmuebleData.nombrePropietario}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-            required
+         
           />
         </div>
         
@@ -198,33 +190,30 @@ export default function InmuebleForm({ onSubmit }: InmuebleFormProps) {
         {inmuebleData.coPropietario === "si" && (
           <>
             <div>
-              <label htmlFor="nombreCopropietario" className="block text-sm font-medium text-gray-700 mb-1">
-                Nombre Copropietario
-              </label>
-              <input
-                type="text"
-                id="nombreCopropietario"
-                name="nombreCopropietario"
-                value={inmuebleData.nombreCopropietario}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-                required={inmuebleData.coPropietario === "si"}
-              />
+             
+                  <Input
+            type="text"
+            placeholder="Pedro"
+            id="nombrePropietario"
+            label="Nombre Co-Propietario"
+            name="nombrePropietario"
+            value={inmuebleData.nombrePropietario}
+            onChange={handleChange}
+         
+          />
             </div>
             
             <div>
-              <label htmlFor="apellidoCopropietario" className="block text-sm font-medium text-gray-700 mb-1">
-                Apellido Copropietario
-              </label>
-              <input
-                type="text"
-                id="apellidoCopropietario"
-                name="apellidoCopropietario"
-                value={inmuebleData.apellidoCopropietario}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#003876]"
-                required={inmuebleData.coPropietario === "si"}
-              />
+               <Input
+            type="text"
+            placeholder="Mendez"
+            id="nombrePropietario"
+            label="Apellido Co-Propietario"
+            name="apellidoPropietario"
+            value={inmuebleData.nombrePropietario}
+            onChange={handleChange}
+         
+          />
             </div>
           </>
         )}
