@@ -178,6 +178,8 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
           />
         </div>
         
+       
+       
         <div>
           <Select
             label="Tipo de Construcción"
@@ -186,30 +188,13 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
             value={memoriaData.tipoConstruccion}
             onChange={handleChange}
             isRequired
-            options={tiposConstruccion.map(tipo => ({ label: tipo, value: tipo }))}
-          />
-        </div>
-        <div>
-          <Select
-            label="Sub Tipo de Construcción"
-            id="subTipoConstruccion"
-            name="subTipoConstruccion"
-            value={memoriaData.subTipoConstruccion}
-            onChange={handleChange}
-            isRequired
-            options={subTiposConstruccion.map(subtipo => ({ label: subtipo, value: subtipo }))}
-          />
-        </div>
-        <div>
-          <Select
-            label="Tipo de Sistema Constructivo"
-            id="tipoSistemaConstructivo"
-            name="tipoSistemaConstructivo"
-            value={memoriaData.tipoSistemaConstructivo}
-            onChange={handleChange}
-            isRequired
-            options={sistemaConstructivo.map(sistema => ({ label: sistema, value: sistema }))}
-          />
+          >
+            {tiposConstruccion.map((tipo, index) => (
+              <option key={index} value={tipo}>{tipo}</option>      
+
+            ))}
+          </Select>
+        
         </div>
         <div>
           <Input
@@ -264,7 +249,7 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
             value={memoriaData.cantidadTotalPlazasParqueo}
             onChange={handleChange}
             isRequired
-          />
+               />
         </div>
         <div>
           <Input

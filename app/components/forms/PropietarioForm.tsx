@@ -147,9 +147,7 @@ export default function PropietarioForm({ onSubmit }: PropietarioFormProps) {
                   label="No. de documento*"
                   type="text"
                   id="documento"
-                  background="aliceblue"
-                  backgroundColor="white"
-                  size={size}
+                    
                   placeholder="Numero de cedula sin guiones"
                   name="documento"
                   value={personaFisica.documento}
