@@ -44,6 +44,7 @@ export default defineConfig([globalIgnores([
     "!**/tsup.config.ts",
 ]), {
     extends: fixupConfigRules(compat.extends(
+        "next/core-web-vitals",
         "plugin:react/recommended",
         "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",

@@ -95,7 +95,7 @@ export default function MemoriaDescriptivaForm({ onSubmit }: MemoriaDescriptivaF
               <span className="text-default-400 text-small">$</span>
             </div>
           }
-          type="number"
+         
           />
         
      

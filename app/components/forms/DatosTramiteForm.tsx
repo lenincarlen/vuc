@@ -79,29 +79,9 @@ export default function DatosTramiteForm({ onSubmit }: DatosTramiteFormProps) {
             isRequired
           />
         </div>
-        <div>
-          <Select
-            label="Región"
-            id="region"
-            name="region"
-            value={tramiteData.region}
-            onChange={handleChange}
-            isRequired
-            options={[{ label: "Seleccione una región", value: "" }, ...regiones.map(region => ({ label: region, value: region }))]}
-          />
-        </div>
-        <div>
-          <Select
-            label="Provincia"
-            id="provincia"
-            name="provincia"
-            value={tramiteData.provincia}
-            onChange={handleChange}
-            isRequired
-            disabled={!tramiteData.region}
-            options={[{ label: "Seleccione una provincia", value: "" }, ...provinciasFiltradas.map(provincia => ({ label: provincia, value: provincia }))]}
-          />
-        </div>
+   
+      
+         
         <div>
           <Input
             label="Municipio"
